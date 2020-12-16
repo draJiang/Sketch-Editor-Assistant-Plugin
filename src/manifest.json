@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sketch-hq/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "设置样式",
+      "identifier": "markdown.my-command-identifier",
+      "script": "./my-command.js",
+      "shortcut": "command  option j"
+    }
+  ],
+  "menu": {
+    "title": "Markdown",
+    "items": [
+      "markdown.my-command-identifier"
+    ]
+  }
+}
