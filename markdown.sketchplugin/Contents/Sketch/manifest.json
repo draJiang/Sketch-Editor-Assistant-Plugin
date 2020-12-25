@@ -16,9 +16,9 @@
     ]
   },
   "version": "0.1.1",
-  "description": "",
+  "description": "hello world",
   "name": "Markdown",
   "identifier": "Markdown",
   "disableCocoaScriptPreprocessor": true,
-  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml"
+  "appcast": "https://raw.githubusercontent.com/draJiang/Sketch-Markdown-Plugin/master/.appcast.xml"
 }

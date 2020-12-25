@@ -140,7 +140,8 @@ var sketch = __webpack_require__(/*! sketch */ "sketch");
     console.log("LayerTextArr: ");
     console.log(LayerTextArr);
     console.log(selection1[i].class());
-    selection1[i].setLineHeight(24); //初始化加粗、删除线样式
+    selection1[i].setLineHeight(24);
+    selection1[i].frame().setWidth(375); //初始化加粗、删除线样式
 
     selection2[i].sketchObject.addAttribute_value_forRange(NSStrikethroughStyleAttributeName, NSUnderlineStyleNone, NSMakeRange(0, selection2[i].text.length)); // NSMakeRange 定义设置样式文字位置
 
@@ -175,13 +176,15 @@ var sketch = __webpack_require__(/*! sketch */ "sketch");
     console.log(underArr);
 
     if (underArr.length > 1) {
-      for (var k = 0; k < underArr.length - 2; k++) {
-        if (k != 0 && k < underArr.length - 2) {
-          k += 1;
+      for (var k = 0; k < underArr.length; k++) {
+        if (underArr.length - m == 1) {
+          break;
         } //const h2BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSUnderlineStyleSingle);
 
 
         selection2[i].sketchObject.addAttribute_value_forRange(NSStrikethroughStyleAttributeName, NSUnderlineStyleSingle, NSMakeRange(underArr[k], underArr[k + 1] - underArr[k] + 2)); // NSMakeRange 定义设置样式文字位置
+
+        k += 1;
       }
     }
 
@@ -199,12 +202,14 @@ var sketch = __webpack_require__(/*! sketch */ "sketch");
     console.log(boldArr);
 
     if (boldArr.length > 1) {
-      for (var m = 0; m < boldArr.length - 2; m++) {
-        if (m != 0 && m < boldArr.length - 2) {
-          m += 1;
+      for (var m = 0; m < boldArr.length; m++) {
+        if (boldArr.length - m == 1) {
+          break;
         }
 
         selection2[i].sketchObject.addAttribute_value_forRange_(NSFontAttributeName, h1BoldFont, NSMakeRange(boldArr[m], boldArr[m + 1] - boldArr[m] + 2)); // NSMakeRange 定义设置样式文字位置
+
+        m += 1;
       }
     }
   } //selectionLayer.stringValue())
