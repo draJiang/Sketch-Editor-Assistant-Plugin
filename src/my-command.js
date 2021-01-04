@@ -79,7 +79,7 @@ export default function () {
     console.log(underArr)
     if (underArr.length > 1) {
       for (var k = 0; k < underArr.length; k++) {
-        if (underArr.length - m == 1) {
+        if (underArr.length - k == 1) {
           break;
         }
         //const h2BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSUnderlineStyleSingle);
