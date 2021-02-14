@@ -63,12 +63,13 @@ export default function () {
 
     }
 
-    var underArr = []
-    var boldArr = []
-    console.log("~~~~")
 
-    recordQueryIndex = 0
     //删除线
+    
+    var underArr = []
+    console.log("~~~~")
+    recordQueryIndex = 0
+    
     while (selection2[i].text.indexOf('~~', recordQueryIndex) != -1) {
 
       console.log(selection2[i].text.indexOf('~~', recordQueryIndex))
@@ -88,9 +89,12 @@ export default function () {
       }
     }
 
-
-    recordQueryIndex = 0
+    
     //加粗
+    
+    var boldArr = []
+    recordQueryIndex = 0
+    
     console.log("**********")
     var h1BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSBoldFontMask);
     while (selection2[i].text.indexOf('**', recordQueryIndex) != -1) {
@@ -110,6 +114,36 @@ export default function () {
         m += 1  
       }
     }
+
+
+        //部分字体颜色
+        var colorArr = [];
+        console.log("```````");
+        recordQueryIndex = 0;
+    
+        while (selection2[i].text.indexOf('`', recordQueryIndex) != -1) {
+          console.log(selection2[i].text.indexOf('`', recordQueryIndex));
+          colorArr.push(selection2[i].text.indexOf('`', recordQueryIndex));
+          recordQueryIndex = selection2[i].text.indexOf('`', recordQueryIndex) + 1;
+        }
+    
+        console.log(colorArr);
+    
+        if (colorArr.length > 1) {
+          for (var l = 0; l < colorArr.length; l++) {
+            if (colorArr.length - l < 2) {
+              break;
+            }
+    
+            if (l != 0) {
+              l += 1;
+            } //const h2BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSUnderlineStyleSingle);
+    
+    
+            selection2[i].sketchObject.addAttribute_value_forRange(NSForegroundColorAttributeName, NSColor.colorWithRed_green_blue_alpha(98 / 255, 54 / 255, 255 / 255, 1.0), NSMakeRange(colorArr[l], colorArr[l + 1] - colorArr[l] + 1)); // NSMakeRange 定义设置样式文字位置
+    
+          }
+        }
 
 
   }

@@ -160,12 +160,12 @@ var sketch = __webpack_require__(/*! sketch */ "sketch");
       console.log(LayerTextArr[j]); //main(LayerTextArr[j],selection2[i])
 
       selection2[i] = main(LayerTextArr[j], selection2[i]);
-    }
+    } //删除线
+
 
     var underArr = [];
-    var boldArr = [];
     console.log("~~~~");
-    recordQueryIndex = 0; //删除线
+    recordQueryIndex = 0;
 
     while (selection2[i].text.indexOf('~~', recordQueryIndex) != -1) {
       console.log(selection2[i].text.indexOf('~~', recordQueryIndex));
@@ -186,10 +186,11 @@ var sketch = __webpack_require__(/*! sketch */ "sketch");
 
         k += 1;
       }
-    }
+    } //加粗
 
-    recordQueryIndex = 0; //加粗
 
+    var boldArr = [];
+    recordQueryIndex = 0;
     console.log("**********");
     var h1BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSBoldFontMask);
 
@@ -210,6 +211,34 @@ var sketch = __webpack_require__(/*! sketch */ "sketch");
         selection2[i].sketchObject.addAttribute_value_forRange_(NSFontAttributeName, h1BoldFont, NSMakeRange(boldArr[m], boldArr[m + 1] - boldArr[m] + 2)); // NSMakeRange 定义设置样式文字位置
 
         m += 1;
+      }
+    } //部分字体颜色
+
+
+    var colorArr = [];
+    console.log("```````");
+    recordQueryIndex = 0;
+
+    while (selection2[i].text.indexOf('`', recordQueryIndex) != -1) {
+      console.log(selection2[i].text.indexOf('`', recordQueryIndex));
+      colorArr.push(selection2[i].text.indexOf('`', recordQueryIndex));
+      recordQueryIndex = selection2[i].text.indexOf('`', recordQueryIndex) + 1;
+    }
+
+    console.log(colorArr);
+
+    if (colorArr.length > 1) {
+      for (var l = 0; l < colorArr.length; l++) {
+        if (colorArr.length - l < 2) {
+          break;
+        }
+
+        if (l != 0) {
+          l += 1;
+        } //const h2BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSUnderlineStyleSingle);
+
+
+        selection2[i].sketchObject.addAttribute_value_forRange(NSForegroundColorAttributeName, NSColor.colorWithRed_green_blue_alpha(98 / 255, 54 / 255, 255 / 255, 1.0), NSMakeRange(colorArr[l], colorArr[l + 1] - colorArr[l] + 1)); // NSMakeRange 定义设置样式文字位置
       }
     }
   } //selectionLayer.stringValue())
