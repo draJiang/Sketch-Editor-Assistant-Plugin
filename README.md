@@ -4,7 +4,7 @@
 
 ## Installation
 
-- [Download](../../releases/latest/download/markdown.sketchplugin.zip) the latest release of the plugin
+- [Download](https://github.com/draJiang/Sketch-Markdown-Plugin/archive/master.zip) the latest release of the plugin
 - Un-zip
 - Double-click on markdown.sketchplugin
 
