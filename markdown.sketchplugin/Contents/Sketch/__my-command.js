@@ -153,24 +153,28 @@ var sketch = __webpack_require__(/*! sketch */ "sketch");
 
     console.log("LayerTextArr: ");
     console.log(LayerTextArr);
-    console.log(selection1[i].class());
-    selection1[i].setLineHeight(24); // 行高
+    console.log(selection1[i].class()); //文本全局样式
+
+    selection1[i].setLineHeight(24); //行高
 
     selection1[i].textAlignment = NSTextAlignmentLeft; //对齐方式
 
     if (masterLayerWidth > 0) {
-      selection1[i].frame().setWidth(masterLayerWidth); // 宽度
-    } //初始化加粗、删除线样式
+      //如果选中的图层中包含非文字图层时 masterLayerWidth 的值才会大于 0
+      selection1[i].setTextBehaviour(1); //设置自动宽度 0 、自动高度 1、固定尺寸 2，如果是自动宽度，则无法设置宽度
 
+      selection1[i].frame().setWidth(masterLayerWidth); // 宽度
+    } //设置整体文字的颜色
+
+
+    var immutableColor = MSImmutableColor.colorWithSVGString_('#333333');
+    var color = MSColor.alloc().initWithImmutableObject_(immutableColor);
+    selection1[i].setTextColor(color); //初始化加粗、删除线样式
 
     selection2[i].sketchObject.addAttribute_value_forRange(NSStrikethroughStyleAttributeName, NSUnderlineStyleNone, NSMakeRange(0, selection2[i].text.length)); // NSMakeRange 定义设置样式文字位置
 
     var UnoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSUnboldFontMask);
     selection2[i].sketchObject.addAttribute_value_forRange_(NSFontAttributeName, UnoldFont, NSMakeRange(0, selection2[i].text.length)); // NSMakeRange 定义设置样式文字位置
-
-    var immutableColor = MSImmutableColor.colorWithSVGString_('#333333');
-    var color = MSColor.alloc().initWithImmutableObject_(immutableColor);
-    selection1[i].setTextColor(color);
 
     for (var j = 0; j < LayerTextArr.length; j++) {
       //处理每行字符串的样式,传入单行字符串、此图层的文本段落
@@ -180,32 +184,6 @@ var sketch = __webpack_require__(/*! sketch */ "sketch");
       console.log(LayerTextArr[j]); //main(LayerTextArr[j],selection2[i])
 
       selection2[i] = main(LayerTextArr[j], selection2[i]);
-    } //删除线
-
-
-    var underArr = [];
-    console.log("~~~~");
-    recordQueryIndex = 0;
-
-    while (selection2[i].text.indexOf('~~', recordQueryIndex) != -1) {
-      console.log(selection2[i].text.indexOf('~~', recordQueryIndex));
-      underArr.push(selection2[i].text.indexOf('~~', recordQueryIndex));
-      recordQueryIndex = selection2[i].text.indexOf('~~', recordQueryIndex) + 1;
-    }
-
-    console.log(underArr);
-
-    if (underArr.length > 1) {
-      for (var k = 0; k < underArr.length; k++) {
-        if (underArr.length - k == 1) {
-          break;
-        } //const h2BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSUnderlineStyleSingle);
-
-
-        selection2[i].sketchObject.addAttribute_value_forRange(NSStrikethroughStyleAttributeName, NSUnderlineStyleSingle, NSMakeRange(underArr[k], underArr[k + 1] - underArr[k] + 2)); // NSMakeRange 定义设置样式文字位置
-
-        k += 1;
-      }
     } //加粗
 
 
@@ -258,7 +236,35 @@ var sketch = __webpack_require__(/*! sketch */ "sketch");
         } //const h2BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSUnderlineStyleSingle);
 
 
-        selection2[i].sketchObject.addAttribute_value_forRange(NSForegroundColorAttributeName, NSColor.colorWithRed_green_blue_alpha(98 / 255, 54 / 255, 255 / 255, 1.0), NSMakeRange(colorArr[l], colorArr[l + 1] - colorArr[l] + 1)); // NSMakeRange 定义设置样式文字位置
+        selection2[i].sketchObject.addAttribute_value_forRange(NSForegroundColorAttributeName, NSColor.colorWithRed_green_blue_alpha(186 / 255, 33 / 255, 33 / 255, 1.0), NSMakeRange(colorArr[l], colorArr[l + 1] - colorArr[l] + 1)); // NSMakeRange 定义设置样式文字位置
+      }
+    } //删除线
+
+
+    var underArr = [];
+    console.log("~~~~");
+    recordQueryIndex = 0;
+
+    while (selection2[i].text.indexOf('~~', recordQueryIndex) != -1) {
+      console.log(selection2[i].text.indexOf('~~', recordQueryIndex));
+      underArr.push(selection2[i].text.indexOf('~~', recordQueryIndex));
+      recordQueryIndex = selection2[i].text.indexOf('~~', recordQueryIndex) + 1;
+    }
+
+    console.log(underArr);
+
+    if (underArr.length > 1) {
+      for (var k = 0; k < underArr.length; k++) {
+        if (underArr.length - k == 1) {
+          break;
+        } //const h2BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(selection2[i].sketchObject.font(), NSUnderlineStyleSingle);
+
+
+        selection2[i].sketchObject.addAttribute_value_forRange(NSStrikethroughStyleAttributeName, NSUnderlineStyleSingle, NSMakeRange(underArr[k], underArr[k + 1] - underArr[k] + 2)); // NSMakeRange 定义设置样式文字位置
+
+        selection2[i].sketchObject.addAttribute_value_forRange(NSForegroundColorAttributeName, NSColor.colorWithRed_green_blue_alpha(153 / 255, 153 / 255, 153 / 255, 1.0), NSMakeRange(underArr[k], underArr[k + 1] - underArr[k] + 2)); // NSMakeRange 定义设置样式文字位置
+
+        k += 1;
       }
     }
   } //selectionLayer.stringValue())
