@@ -15,6 +15,9 @@ export default function () {
   console.log(selection2[0].text)
   var LayerTextArr
   var masterLayerWidth = 0
+  var masterLayerHeight = 0
+  var masterLayerX = -1
+  var masterLayerY = -1
   var recordQueryIndex = 0;
 
   // 如果选中图层中存在非文本图层，则获取其宽度，存在多个时取宽度最大的，此宽度作为文本图层的宽度
@@ -28,6 +31,9 @@ export default function () {
       if (selection1[i].frame().width() > masterLayerWidth) {
         //取宽度最大的图层作为参考
         masterLayerWidth = selection1[i].frame().width()
+        masterLayerHeight = selection1[i].frame().height()
+        masterLayerX = selection2[i].frame.x
+        masterLayerY = selection2[i].frame.y
       }
       continue
     }
@@ -49,13 +55,17 @@ export default function () {
     console.log(selection1[i].class())
 
     //文本全局样式
-    selection1[i].setLineHeight(24) //行高
+    selection1[i].setLineHeight(48) //行高
     selection1[i].textAlignment = NSTextAlignmentLeft //对齐方式
     if (masterLayerWidth > 0) {
       //如果选中的图层中包含非文字图层时 masterLayerWidth 的值才会大于 0
       selection1[i].setTextBehaviour(1) //设置自动宽度 0 、自动高度 1、固定尺寸 2，如果是自动宽度，则无法设置宽度
       selection1[i].frame().setWidth(masterLayerWidth) // 宽度
+      //设置文本的位置
+      selection1[i].frame().setX(masterLayerX)
+      selection1[i].frame().setY(masterLayerY+masterLayerHeight+40) //与 master 图层左侧对齐，上边距 = 40
     }
+    
     //设置整体文字的颜色
     var immutableColor = MSImmutableColor.colorWithSVGString_('#333333');
     var color = MSColor.alloc().initWithImmutableObject_(immutableColor);
@@ -222,7 +232,7 @@ export default function () {
     const h1BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(layer.sketchObject.font(), NSBoldFontMask);
     //layer.sketchObject.addAttribute_value_forRange_(NSFontAttributeName,h1BoldFont, NSMakeRange(start, end)); // NSMakeRange 定义设置样式文字位置
 
-    const h1FontSize = NSFontManager.sharedFontManager().convertFont_toSize(h1BoldFont, 14.0);
+    const h1FontSize = NSFontManager.sharedFontManager().convertFont_toSize(h1BoldFont, 28.0);
     layer.sketchObject.addAttribute_value_forRange_(NSFontAttributeName, h1FontSize, NSMakeRange(start, end)); // NSMakeRange 定义设置样式文字位置
 
 
@@ -243,7 +253,7 @@ export default function () {
     const h2BoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(layer.sketchObject.font(), NSBoldFontMask);
     //layer.sketchObject.addAttribute_value_forRange_(NSFontAttributeName,h2BoldFont, NSMakeRange(start, end)); // NSMakeRange 定义设置样式文字位置
 
-    const h2FontSize = NSFontManager.sharedFontManager().convertFont_toSize(h2BoldFont, 14.0);
+    const h2FontSize = NSFontManager.sharedFontManager().convertFont_toSize(h2BoldFont, 28.0);
     layer.sketchObject.addAttribute_value_forRange_(NSFontAttributeName, h2FontSize, NSMakeRange(start, end)); // NSMakeRange 定义设置样式文字位置
 
 
@@ -263,7 +273,7 @@ export default function () {
     const descBoldFont = NSFontManager.sharedFontManager().convertFont_toHaveTrait(layer.sketchObject.font(), NSUnboldFontMask);
     layer.sketchObject.addAttribute_value_forRange_(NSFontAttributeName, descBoldFont, NSMakeRange(start, end)); // NSMakeRange 定义设置样式文字位置
 
-    const descFontSize = NSFontManager.sharedFontManager().convertFont_toSize(descBoldFont, 14.0);
+    const descFontSize = NSFontManager.sharedFontManager().convertFont_toSize(descBoldFont, 28.0);
     layer.sketchObject.addAttribute_value_forRange_(NSFontAttributeName, descFontSize, NSMakeRange(start, end)); // NSMakeRange 定义设置样式文字位置
 
     //layer.sketchObject.addAttribute_value_forRange_(NSFontAttributeName,descBoldFont, NSMakeRange(start, end)); // NSMakeRange 定义设置样式文字位置
