@@ -1,40 +1,46 @@
 {
   "$schema": "https://raw.githubusercontent.com/sketch-hq/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
   "icon": "icon.png",
-  "author":"jiangZiLong",
+  "author": "jiangZiLong",
   "commands": [
     {
       "name": "Markdown",
       "identifier": "markdown.my-command-identifier",
-      "script": "./markdown.js",
+      "script": "__markdown.js",
       "shortcut": "command option j"
     },
     {
       "name": "插入当前时间",
       "identifier": "setUpdateTime.my-command-identifier",
-      "script": "./setUpdateTime.js",
+      "script": "__setUpdateTime.js",
       "shortcut": "command shift t"
     },
     {
       "name": "延长画板",
       "identifier": "artboardLengthen.my-command-identifier",
-      "script": "./artboardLengthen.js",
+      "script": "__artboardLengthen.js",
       "shortcut": "command shift c"
     },
     {
       "name": "图层整理",
       "identifier": "layersArrange.my-command-identifier",
-      "script": "./layersArrange.js",
+      "script": "__layersArrange.js",
       "shortcut": ""
     }
   ],
   "menu": {
     "title": "Editor Assistant",
     "items": [
-      "markdown.my-command-identifier"
-      ,"setUpdateTime.my-command-identifier"
-      ,"artboardLengthen.my-command-identifier"
-      ,"layersArrange.my-command-identifier"
+      "markdown.my-command-identifier",
+      "setUpdateTime.my-command-identifier",
+      "artboardLengthen.my-command-identifier",
+      "layersArrange.my-command-identifier"
     ]
-  }
+  },
+  "version": "0.2.0",
+  "description": "帮助你更高效的编辑文档",
+  "name": "Editor Assistant",
+  "identifier": "Editor Assistant",
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://raw.githubusercontent.com/draJiang/Sketch-Markdown-Plugin/master/.appcast.xml"
 }

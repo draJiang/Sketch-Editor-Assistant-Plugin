@@ -1,15 +1,15 @@
 {
-  "name": "markdown",
-  "description": "jiangZiLong",
-  "version": "0.1.2",
+  "name": "Editor Assistant",
+  "description": "帮助你更高效的编辑文档",
+  "version": "0.2.0",
   "repository":"https://github.com/draJiang/Sketch-Markdown-Plugin.git",
   "engines": {
     "sketch": ">=49.0"
   },
   "skpm": {
-    "name": "Markdown",
+    "name": "Editor Assistant",
     "manifest": "src/manifest.json",
-    "main": "markdown.sketchplugin",
+    "main": "Editor Assistant.sketchplugin",
     "assets": [
       "assets/**/*"
     ],
