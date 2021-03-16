@@ -6,7 +6,6 @@
 ![IMG](https://jiangzilong-image.oss-cn-beijing.aliyuncs.com/uPic/QBv7uo20210216171514.png)
 
 ### 插入当前时间
-![time](https://jiangzilong-image.oss-cn-beijing.aliyuncs.com/uPic/PLrMKb20210314174335.png)
 
 ### 图层整理
 ![图层整理](https://jiangzilong-image.oss-cn-beijing.aliyuncs.com/uPic/layerzhengli20210314175536.gif)
