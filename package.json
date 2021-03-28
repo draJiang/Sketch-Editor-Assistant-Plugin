@@ -1,8 +1,8 @@
 {
   "name": "Editor Assistant",
   "description": "帮助你更高效的编辑文档",
-  "version": "0.2.0",
-  "repository":"https://github.com/draJiang/Sketch-Markdown-Plugin.git",
+  "version": "0.3.0",
+  "repository":"https://github.com/draJiang/Sketch-Editor-Assistant-Plugin.git",
   "engines": {
     "sketch": ">=49.0"
   },

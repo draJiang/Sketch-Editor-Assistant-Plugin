@@ -16,6 +16,12 @@
       "shortcut": "command shift t"
     },
     {
+      "name": "设置线条样式",
+      "identifier": "lineDrawer.my-command-identifier",
+      "script": "./lineDrawer.js",
+      "shortcut": "command option l"
+    },
+    {
       "name": "延长画板",
       "identifier": "artboardLengthen.my-command-identifier",
       "script": "./artboardLengthen.js",
@@ -32,6 +38,7 @@
     "title": "Editor Assistant",
     "items": [
       "markdown.my-command-identifier"
+      ,"lineDrawer.my-command-identifier"
       ,"setUpdateTime.my-command-identifier"
       ,"artboardLengthen.my-command-identifier"
       ,"layersArrange.my-command-identifier"
